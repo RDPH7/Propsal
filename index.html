@@ -11,27 +11,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script:wght@600&display=swap');
 
 body{
-    margin:0;
-    background:linear-gradient(120deg,#ffe6e6,#ffb3c6,#ff99cc);
-    color:black;
-    font-family:'Segoe UI',sans-serif;
-    overflow:hidden;
+  margin:0;
+  background:linear-gradient(120deg,#ffe6e6,#ffb3c6,#ff99cc);
+  color:black;
+  font-family:'Segoe UI',sans-serif;
+  overflow:hidden;
 }
 
 /* Pages */
 .page{
-    position:absolute;
-    inset:0;
-    opacity:0;
-    pointer-events:none;
-    transition:opacity 0.6s;
-    text-align:center;
-    padding-top:40px;
+  position:absolute;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.6s;
+  text-align:center;
+  padding-top:40px;
 }
 .page.active{
-    opacity:1;
-    pointer-events:auto;
-    z-index:1;
+  opacity:1;
+  pointer-events:auto;
+  z-index:1;
 }
 
 /* Fonts */
@@ -40,68 +40,97 @@ p{font-family:'Playfair Display',serif;}
 
 /* Buttons */
 button{
-    padding:10px 24px;
-    border-radius:25px;
-    border:none;
-    cursor:pointer;
-    animation:pulse 1.6s infinite;
-    transition:0.3s;
-    background-color:#ff4da6;
-    color:white;
+  padding:10px 26px;
+  border-radius:25px;
+  border:none;
+  cursor:pointer;
+  animation:pulse 1.6s infinite;
+  transition:0.3s;
+  background:#ff4da6;
+  color:white;
 }
 button:hover{transform:scale(1.1);}
 
-/* Heart animation */
-.heart{
-    font-size:80px;
-    animation:beat 1.2s infinite;
-}
-@keyframes beat{
-    50%{transform:scale(1.4)}
+/* Pulse */
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(255,77,166,.5)}
+  70%{box-shadow:0 0 0 15px rgba(255,77,166,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,77,166,0)}
 }
 
-/* Teddy hug */
-.teddy{
-    font-size:70px;
-    animation:hug 1.5s infinite alternate;
+/* Hearts */
+.heart{
+  font-size:80px;
+  animation:beat 1.2s infinite;
 }
-@keyframes hug{
-    from{transform:scale(1)}
-    to{transform:scale(1.15)}
+@keyframes beat{
+  50%{transform:scale(1.4)}
+}
+
+/* Teddy hug animation */
+.hug-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+  margin-top:20px;
+}
+
+.teddy-left,.teddy-right{
+  font-size:80px;
+}
+
+.teddy-left{
+  animation:leftHug 2s infinite ease-in-out;
+}
+.teddy-right{
+  animation:rightHug 2s infinite ease-in-out;
+}
+
+@keyframes leftHug{
+  0%,100%{transform:translateX(0)}
+  50%{transform:translateX(25px)}
+}
+@keyframes rightHug{
+  0%,100%{transform:translateX(0)}
+  50%{transform:translateX(-25px)}
 }
 
 /* Floating hearts */
 .floating-heart{
-    position:absolute;
-    font-size:24px;
-    animation:float linear forwards;
+  position:absolute;
+  font-size:24px;
+  animation:float linear forwards;
 }
 @keyframes float{
-    from{transform:translateY(100vh)}
-    to{transform:translateY(-120vh);opacity:0}
+  from{transform:translateY(100vh)}
+  to{transform:translateY(-120vh);opacity:0}
 }
 
 /* Countdown */
 .count{
-    font-size:90px;
-    font-weight:bold;
-    margin-top:20px;
+  font-size:90px;
+  font-weight:bold;
+  margin-top:20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO PAGE (NEW) -->
+<!-- INTRO PAGE -->
 <div id="page0" class="page active">
   <div class="container">
     <h1>Hello Beautiful 💖</h1>
-    <div class="heart">❤️</div>
-    <div class="d-flex justify-content-center gap-3 mt-3">
-      <div class="teddy">🧸</div>
-      <div class="teddy">🧸</div>
+
+    <div class="hug-container">
+      <div class="teddy-left">🧸</div>
+      <div class="heart">❤️</div>
+      <div class="teddy-right">🧸</div>
     </div>
-    <p class="mt-4">Something very special for you ✨</p>
+
+    <p class="mt-4">My heart wants to tell you something special ✨</p>
+
     <button id="startBtn">See what’s my heart says 💌</button>
   </div>
 </div>
@@ -125,7 +154,7 @@ button:hover{transform:scale(1.1);}
   <button id="thinkOfCourse">Of course ❤️</button>
 </div>
 
-<!-- PAGE 3 COUNTDOWN -->
+<!-- COUNTDOWN PAGE -->
 <div id="page3" class="page">
   <h2>Get ready my love 💖</h2>
   <div class="heart">❤️</div>
@@ -137,7 +166,7 @@ button:hover{transform:scale(1.1);}
   <div class="container">
     <h1>Happy Valentine Day Madam 😙❤️</h1>
     <p>
-      Hey! Beautiful 💖<br>
+      Hey Beautiful 💖<br>
       Kya tum mere sath Rose 🌹 se Dhaniya tak ki journey krna chahogi 😌<br><br>
       Kya aap mujhe itna haq doge ki main aapko bas <b>"meri"</b> keh saku ❤️<br><br>
       I love you so much meri jaan 💞<br>
@@ -154,11 +183,13 @@ const showPage=id=>{
   document.getElementById(id).classList.add('active');
 };
 
-// Intro button
-document.getElementById('startBtn').onclick=()=>showPage('page1');
+// Intro
+startBtn.onclick=()=>showPage('page1');
 
-// Existing buttons
+// Page 1
 yesBtn.onclick=noBtn.onclick=()=>showPage('pageThink');
+
+// Think page
 thinkYes.onclick=thinkOfCourse.onclick=()=>{
   showPage('page3');
   startCountdown();
@@ -167,7 +198,7 @@ thinkYes.onclick=thinkOfCourse.onclick=()=>{
 // Countdown
 function startCountdown(){
   let c=5;
-  const el=document.getElementById('countdown');
+  const el=countdown;
   el.textContent=c;
   const timer=setInterval(()=>{
     c--;
