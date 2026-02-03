@@ -18,6 +18,7 @@ body{
     overflow:hidden;
 }
 
+/* Pages */
 .page{
     position:absolute;
     inset:0;
@@ -25,7 +26,7 @@ body{
     pointer-events:none;
     transition:opacity 0.6s;
     text-align:center;
-    padding:40px 15px;
+    padding-top:40px;
 }
 .page.active{
     opacity:1;
@@ -33,39 +34,43 @@ body{
     z-index:1;
 }
 
-h1,h2,p{color:black;}
+/* Fonts */
 h1,h2{font-family:'Dancing Script',cursive;}
-p{
-    font-family:'Playfair Display',serif;
-    font-size:17px;
-    line-height:1.7;
-}
+p{font-family:'Playfair Display',serif;}
 
+/* Buttons */
 button{
     padding:10px 24px;
     border-radius:25px;
     border:none;
     cursor:pointer;
     animation:pulse 1.6s infinite;
-    background:#ff4da6;
-    color:black;
-    font-weight:bold;
-    margin-top:15px;
+    transition:0.3s;
+    background-color:#ff4da6;
+    color:white;
 }
 button:hover{transform:scale(1.1);}
 
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.08)}
-  100%{transform:scale(1)}
-}
-
+/* Heart animation */
 .heart{
-    font-size:70px;
+    font-size:80px;
     animation:beat 1.2s infinite;
 }
-@keyframes beat{50%{transform:scale(1.3)}}
+@keyframes beat{
+    50%{transform:scale(1.4)}
+}
 
+/* Teddy hug */
+.teddy{
+    font-size:70px;
+    animation:hug 1.5s infinite alternate;
+}
+@keyframes hug{
+    from{transform:scale(1)}
+    to{transform:scale(1.15)}
+}
+
+/* Floating hearts */
 .floating-heart{
     position:absolute;
     font-size:24px;
@@ -76,105 +81,67 @@ button:hover{transform:scale(1.1);}
     to{transform:translateY(-120vh);opacity:0}
 }
 
-.loader{
-    font-size:50px;
-    animation:spin 1.5s linear infinite;
-}
-@keyframes spin{
-    0%{transform:rotate(0deg)}
-    100%{transform:rotate(360deg)}
-}
-
+/* Countdown */
 .count{
-    font-size:60px;
+    font-size:90px;
     font-weight:bold;
-}
-
-/* ❤️ NOTE STYLE */
-.note{
-    max-width:700px;
-    margin:20px auto;
-    padding:25px 22px;
-    background:#fffdf5;
-    border-radius:12px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.15);
-    text-align:left;
-    color:black;
-}
-.note p{
-    color:black;
-    font-size:16.5px;
-}
-.note-title{
-    text-align:center;
-    font-family:'Dancing Script',cursive;
-    font-size:34px;
-    margin-bottom:15px;
+    margin-top:20px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- INTRO PAGE (NEW) -->
+<div id="page0" class="page active">
+  <div class="container">
+    <h1>Hello Beautiful 💖</h1>
+    <div class="heart">❤️</div>
+    <div class="d-flex justify-content-center gap-3 mt-3">
+      <div class="teddy">🧸</div>
+      <div class="teddy">🧸</div>
+    </div>
+    <p class="mt-4">Something very special for you ✨</p>
+    <button id="startBtn">See what’s my heart says 💌</button>
+  </div>
+</div>
+
 <!-- PAGE 1 -->
-<div id="page1" class="page active">
-  <h2>Hello Beautiful ✨</h2>
+<div id="page1" class="page">
+  <div class="container">
+    <h2>Hello Mrs Aditya Tripathy ✨</h2>
+    <p>Happy Valentine’s Day ❤️</p>
+    <div class="heart">❤️</div>
+    <h1>Will you be mine?</h1>
+    <button id="yesBtn">Yes 💕</button>
+    <button id="noBtn">No 🙈</button>
+  </div>
+</div>
+
+<!-- THINK PAGE -->
+<div id="pageThink" class="page">
+  <h2>Think again… 💭</h2>
+  <button id="thinkYes">Yes 🥰</button>
+  <button id="thinkOfCourse">Of course ❤️</button>
+</div>
+
+<!-- PAGE 3 COUNTDOWN -->
+<div id="page3" class="page">
+  <h2>Get ready my love 💖</h2>
   <div class="heart">❤️</div>
-  <h1>Gussa ho? 🥺</h1>
-  <button id="yesBtn">Yes 😤</button>
-  <button id="noBtn">No 🥹</button>
+  <div id="countdown" class="count">5</div>
 </div>
 
-<!-- LOADING PAGE -->
-<div id="pageLoading" class="page">
-  <div class="loader">💞</div>
-  <h1>Loading your cuteness…</h1>
-  <div id="loadCount" class="count">3</div>
-</div>
-
-<!-- BEAUTY PAGE -->
-<div id="pageCute" class="page">
-  <h1>
-    Ohhh my god 😭❤️‍🩹<br>
-    tumhari beauty toh phone bhi nai seh skta<br>
-    hayee 💖
-  </h1>
-</div>
-
-<!-- SORRY PAGE -->
-<div id="pageSorry" class="page">
-  <h1>Sorry Mrs Aditya Tripathy 😭</h1>
-  <div class="heart">❤️</div>
-  <p>
-    I love you so muchh 💖<br>
-    Please gussa matt raho mujhse 🥺💞
-  </p>
-  <button id="heartBtn">See what’s my heart says 💌</button>
-</div>
-
-<!-- ❤️ NOTE PAGE -->
-<div id="pageHeart" class="page">
-  <div class="heart">❤️</div>
-
-  <div class="note">
-    <div class="note-title">Hey My dear Bhootni 👻💖</div>
+<!-- FINAL PAGE -->
+<div id="page4" class="page">
+  <div class="container">
+    <h1>Happy Valentine Day Madam 😙❤️</h1>
     <p>
-      Kya hua gussa ho abhi bhi mujhse? Sorry na 🥲  
-      jo bhi galti hui mere se maaf krdo na please.<br><br>
-
-      Mujhe na tumhe ab rok-tok nahi karna 🙂  
-      pyaar mein azaadi honi chahiye naa ki gulaami.  
-      Isiliye main badal gaya hu.<br><br>
-
-      Main chahta hu tum mere saath aur jyada khush raho.  
-      Mere saath rehkar tum azaad feel karo, fresh feel karo,  
-      naa ki udaas.<br><br>
-
-      Main tumhe hamesha khush dekhna chahta hu.  
-      Tum khush rehti ho toh mujhe bhi bohot khushi milti hai.<br><br>
-
-      Tum meri smile ka reason ho shalu 🙂  
-      Tum meri dhadkan ban chuki ho ❤️
+      Hey! Beautiful 💖<br>
+      Kya tum mere sath Rose 🌹 se Dhaniya tak ki journey krna chahogi 😌<br><br>
+      Kya aap mujhe itna haq doge ki main aapko bas <b>"meri"</b> keh saku ❤️<br><br>
+      I love you so much meri jaan 💞<br>
+      I love you so much Mrs Aditya Tripathy 💍
     </p>
   </div>
 </div>
@@ -187,27 +154,32 @@ const showPage=id=>{
   document.getElementById(id).classList.add('active');
 };
 
-const startLoading=()=>{
-  showPage('pageLoading');
-  let c=3;
-  const el=document.getElementById('loadCount');
-  el.textContent=c;
+// Intro button
+document.getElementById('startBtn').onclick=()=>showPage('page1');
 
-  const t=setInterval(()=>{
-    c--;
-    el.textContent=c;
-    if(c===0){
-      clearInterval(t);
-      showPage('pageCute');
-      setTimeout(()=>showPage('pageSorry'),2500);
-    }
-  },1000);
+// Existing buttons
+yesBtn.onclick=noBtn.onclick=()=>showPage('pageThink');
+thinkYes.onclick=thinkOfCourse.onclick=()=>{
+  showPage('page3');
+  startCountdown();
 };
 
-yesBtn.onclick=noBtn.onclick=startLoading;
-heartBtn.onclick=()=>showPage('pageHeart');
+// Countdown
+function startCountdown(){
+  let c=5;
+  const el=document.getElementById('countdown');
+  el.textContent=c;
+  const timer=setInterval(()=>{
+    c--;
+    if(c>0) el.textContent=c;
+    else{
+      clearInterval(timer);
+      showPage('page4');
+    }
+  },1000);
+}
 
-// floating hearts
+// Floating hearts
 setInterval(()=>{
   const h=document.createElement('div');
   h.className='floating-heart';
