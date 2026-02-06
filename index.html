@@ -59,7 +59,7 @@ button{
 
 /* notes */
 .note{
-  background:rgba(255,255,255,0.95);
+  background:rgba(255,255,255,0.97);
   padding:25px;
   border-radius:20px;
   max-width:650px;
@@ -72,51 +72,62 @@ button{
   to{opacity:1;transform:translateY(0)}
 }
 
-/* 🌹 BLOOMING ROSE */
-.rose-bloom{
+/* 🌹 BIG ROSE WITH GLOW + ROTATION */
+.big-rose{
   position:relative;
-  width:150px;
-  height:150px;
-  margin:30px auto;
-  filter:drop-shadow(0 0 20px rgba(255,0,80,0.35));
+  width:230px;
+  height:230px;
+  margin:40px auto;
+  animation:rotateRose 18s linear infinite;
 }
 
-.rose-bloom span{
+@keyframes rotateRose{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+.big-rose span{
   position:absolute;
   inset:0;
   border-radius:50%;
-  background:#e6004c;
   transform:scale(0);
   opacity:0;
-  animation:bloom 1s forwards;
+  animation:bloom 1.2s forwards ease-out;
 }
 
-.rose-bloom span:nth-child(1){animation-delay:0.2s}
-.rose-bloom span:nth-child(2){animation-delay:0.7s;background:#ff3366}
-.rose-bloom span:nth-child(3){animation-delay:1.2s;background:#ff6699}
-.rose-bloom span:nth-child(4){animation-delay:1.7s;background:#ff99bb}
-.rose-bloom span:nth-child(5){animation-delay:2.2s;background:#ffd6e6}
+.big-rose span:nth-child(1){
+  background:#7a001f;
+  animation-delay:0.2s;
+}
+.big-rose span:nth-child(2){
+  background:#b3003b;
+  animation-delay:0.8s;
+}
+.big-rose span:nth-child(3){
+  background:#e6004c;
+  animation-delay:1.4s;
+}
+.big-rose span:nth-child(4){
+  background:#ff3366;
+  animation-delay:2s;
+}
+.big-rose span:nth-child(5){
+  background:#ff7aa8;
+  animation-delay:2.6s;
+  box-shadow:0 0 35px rgba(255,0,90,0.7);
+}
 
 @keyframes bloom{
-  from{transform:scale(0);opacity:0}
+  from{transform:scale(0.2);opacity:0}
   to{transform:scale(1);opacity:1}
-}
-
-/* falling roses */
-.fall{
-  position:absolute;
-  top:-40px;
-  font-size:28px;
-  animation:fall linear forwards;
-}
-
-@keyframes fall{
-  to{transform:translateY(110vh);opacity:0}
 }
 </style>
 </head>
 
 <body>
+
+<!-- AUDIO (AUTO PLAY ON FINAL PAGE) -->
+<audio id="loveSong" src="song.mp3" loop></audio>
 
 <!-- PAGE 1 -->
 <div class="page active" id="p1">
@@ -171,7 +182,7 @@ I love you Madam ji ❤️
 <div class="page" id="final">
   <h2>Hey, this is for you 🌹</h2>
 
-  <div class="rose-bloom">
+  <div class="big-rose">
     <span></span><span></span><span></span><span></span><span></span>
   </div>
 
@@ -185,19 +196,12 @@ I love you Madam ji ❤️
 function go(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-}
 
-// falling roses only on final page
-setInterval(()=>{
-  if(!document.getElementById('final').classList.contains('active')) return;
-  const r=document.createElement('div');
-  r.className='fall';
-  r.innerHTML='🌹';
-  r.style.left=Math.random()*100+'vw';
-  r.style.animationDuration=(4+Math.random()*3)+'s';
-  document.body.appendChild(r);
-  setTimeout(()=>r.remove(),7000);
-},600);
+  // play music on final page
+  if(id === 'final'){
+    document.getElementById('loveSong').play();
+  }
+}
 </script>
 
 </body>
