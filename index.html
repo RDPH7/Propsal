@@ -2,103 +2,93 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You 🌹</title>
+<title>For You</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
-
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
 body{
-  background:#ffffff;
+  margin:0;
+  height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  height:100vh;
-  font-family:'Dancing Script',cursive;
+  background:#ffffff;
+  font-family:serif;
+  color:black;
 }
 
-/* Instagram Story Frame */
-.story{
+.container{
   width:360px;
-  height:640px; /* 9:16 ratio */
-  background:#fff;
+  height:640px;
   text-align:center;
   position:relative;
 }
 
-/* Text */
 h2{
   margin-top:40px;
-  font-size:26px;
-  color:#000;
+  font-size:22px;
 }
 
 h1{
-  font-size:30px;
-  color:#000;
+  font-size:26px;
   margin-top:30px;
 }
 
-/* 🌹 ROSE CONTAINER */
+/* 🌹 ROSE */
 .rose{
   position:relative;
   width:200px;
   height:200px;
-  margin:50px auto;
+  margin:60px auto;
 }
 
-/* petals */
 .petal{
   position:absolute;
-  width:120px;
-  height:160px;
-  background:radial-gradient(circle at top, #ff5c8a, #c4003a);
+  width:80px;
+  height:120px;
+  background:#d6002f;
   border-radius:50% 50% 50% 50%;
-  top:20px;
-  left:40px;
+  top:40px;
+  left:60px;
   transform-origin:bottom center;
-  transform:scale(0) rotate(0deg);
-  animation:bloom 1.2s forwards;
+  transform:scale(0);
+  animation:open 1s forwards;
 }
 
-.petal:nth-child(1){animation-delay:0.2s}
-.petal:nth-child(2){animation-delay:0.6s;transform:rotate(45deg) scale(0)}
-.petal:nth-child(3){animation-delay:1s;transform:rotate(-45deg) scale(0)}
-.petal:nth-child(4){animation-delay:1.4s;transform:rotate(90deg) scale(0)}
-.petal:nth-child(5){animation-delay:1.8s;transform:rotate(-90deg) scale(0)}
+.petal:nth-child(1){transform:rotate(0deg) scale(0); animation-delay:0.2s;}
+.petal:nth-child(2){transform:rotate(45deg) scale(0); animation-delay:0.6s;}
+.petal:nth-child(3){transform:rotate(-45deg) scale(0); animation-delay:1s;}
+.petal:nth-child(4){transform:rotate(90deg) scale(0); animation-delay:1.4s;}
+.petal:nth-child(5){transform:rotate(-90deg) scale(0); animation-delay:1.8s;}
 
-@keyframes bloom{
-  to{
-    transform:scale(1) rotate(var(--r,0deg));
-  }
+@keyframes open{
+  to{ transform:scale(1) rotate(var(--r)); }
 }
 
-/* center bud */
-.bud{
+/* CENTER */
+.center{
   position:absolute;
-  width:60px;
-  height:60px;
-  background:#b3003b;
+  width:50px;
+  height:50px;
+  background:#a00025;
   border-radius:50%;
-  top:70px;
-  left:70px;
-  animation:pop 2.2s forwards;
+  top:75px;
+  left:75px;
+  transform:scale(0);
+  animation:centerPop 2.4s forwards;
 }
 
-@keyframes pop{
-  from{transform:scale(0)}
-  to{transform:scale(1)}
+@keyframes centerPop{
+  to{transform:scale(1);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="story">
+<div class="container">
 
-  <h2>Hey, this is for you 🌹</h2>
+  <h2>Hey this is for you</h2>
 
   <div class="rose">
     <div class="petal" style="--r:0deg"></div>
@@ -106,7 +96,7 @@ h1{
     <div class="petal" style="--r:-45deg"></div>
     <div class="petal" style="--r:90deg"></div>
     <div class="petal" style="--r:-90deg"></div>
-    <div class="bud"></div>
+    <div class="center"></div>
   </div>
 
   <h1>
