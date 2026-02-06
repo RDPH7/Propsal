@@ -9,16 +9,14 @@
 
 body{
   margin:0;
-  font-family: 'Georgia', serif;
+  font-family: Georgia, serif;
   background:white;
   color:black;
-  overflow:hidden;
 }
 
 .page{
-  position:absolute;
-  inset:0;
   display:none;
+  min-height:100vh;
   justify-content:center;
   align-items:center;
   text-align:center;
@@ -27,52 +25,39 @@ body{
 
 .page.active{display:flex}
 
+/* ---------- BUTTON ---------- */
+.btn{
+  padding:12px 20px;
+  border:none;
+  border-radius:30px;
+  background:#c4002d;
+  color:white;
+  font-size:16px;
+  margin-top:20px;
+}
+
 /* ---------- PAGE 1 ---------- */
 .page1{
   background:linear-gradient(to top,#fff,#ffecec);
 }
 
-.rose-bg{
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 30%,rgba(255,0,0,.15),transparent 40%),
-    radial-gradient(circle at 80% 40%,rgba(255,0,0,.12),transparent 40%);
-  animation:float 6s infinite alternate;
-}
-
-@keyframes float{
-  to{transform:scale(1.05)}
-}
-
-.btn{
-  margin-top:25px;
-  padding:12px 20px;
-  border:none;
-  border-radius:30px;
-  background:#d6002f;
-  color:white;
-  font-size:16px;
-}
-
-/* ---------- PAGE 2 ---------- */
+/* ---------- OPTIONS ---------- */
 .option{
-  background:#fff;
   border:1px solid #ddd;
-  padding:14px;
-  margin:10px;
+  padding:15px;
+  margin:12px 0;
   border-radius:15px;
 }
 
-/* ---------- NOTES ---------- */
+/* ---------- NOTE ---------- */
 .note{
-  background:#fff;
-  border-radius:20px;
+  background:white;
   padding:25px;
-  box-shadow:0 10px 30px rgba(0,0,0,.1);
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
 }
 
-/* ---------- FINAL ROSE ---------- */
+/* ---------- ROSE ---------- */
 .rose{
   position:relative;
   width:220px;
@@ -85,7 +70,7 @@ body{
   width:90px;
   height:130px;
   background:#c4002d;
-  border-radius:50% 50% 50% 50%;
+  border-radius:50%;
   top:45px;
   left:65px;
   transform-origin:bottom center;
@@ -123,67 +108,62 @@ body{
 <body>
 
 <!-- PAGE 1 -->
-<div class="page page1 active">
-  <div class="rose-bg"></div>
+<div class="page page1 active" id="p1">
   <div>
     <h2>Hey Beautiful 🌹</h2>
-    <button class="btn" onclick="openPage(2)">
+    <button class="btn" onclick="go('p2')">
       Click here to see what Aditya thinks about you
     </button>
   </div>
 </div>
 
-<!-- PAGE 2 -->
-<div class="page">
+<!-- PAGE 2 OPTIONS -->
+<div class="page" id="p2">
   <div>
     <h2>Choose one ❤️</h2>
-    <div class="option" onclick="openPage(3)">💌 A note from my heart</div>
-    <div class="option" onclick="openPage(4)">🤍 For your pain</div>
-    <div class="option" onclick="openPage(5)">🌹 Something special</div>
+    <div class="option" onclick="go('p3')">💌 A note from my heart</div>
+    <div class="option" onclick="go('p4')">🤍 For your pain</div>
+    <div class="option" onclick="go('p5')">🌹 Something special</div>
   </div>
 </div>
 
 <!-- NOTE 1 -->
-<div class="page">
+<div class="page" id="p3">
   <div class="note">
     <p>
 Hey My girl 🤌🏻<br><br>
-tumhe saamne se rose toh nahi de skta parr  
-haan tumhare liye kuch likha hai mere dil ne ❤️<br><br>
-
-Shalu sach batau toh mujhe yeh Valentine ki aadat nahi,
-first time hai…  
-aur mujhe nahi lagta Valentine sirf 1–2 week ka hota hai.<br><br>
+Tumhe saamne se rose nahi de sakta  
+par dil ne kuch likha hai ❤️<br><br>
 
 Tum mere liye special se bhi zyada ho.  
-Tumhara mere life me hona har roz ek Valentine hai.  
-<br><br>
+Tumhara mere life me hona  
+har roz ek Valentine hai.<br><br>
+
 I love you Shalu 💖
     </p>
-    <button class="btn" onclick="openPage(2)">Back</button>
+    <button class="btn" onclick="go('p2')">Back</button>
   </div>
 </div>
 
 <!-- NOTE 2 -->
-<div class="page">
+<div class="page" id="p4">
   <div class="note">
     <p>
 Hey Shalu 🤍<br><br>
-Mujhe pata hai tumhe abhi kaafi pain ho raha hoga.  
-Main tumhe kaise better feel karwau  
-yeh mujhe nahi pata…<br><br>
+Mujhe pata hai tumhe pain ho raha hoga.  
+Main kaise comfort du mujhe nahi pata…<br><br>
 
-Par Shalu, tum hi meri sukoon ho,  
-meri khushi ho.  
-<br><br>
+Par tum hi meri sukoon ho,  
+meri khushi ho.<br><br>
+
 I love you madam ji ❤️
     </p>
-    <button class="btn" onclick="openPage(2)">Back</button>
+    <button class="btn" onclick="go('p2')">Back</button>
   </div>
 </div>
 
 <!-- FINAL PAGE -->
-<div class="page">
+<div class="page" id="p5">
   <div>
     <h2>Hey, this is for you 🌹</h2>
 
@@ -204,9 +184,10 @@ I love you madam ji ❤️
 </div>
 
 <script>
-function openPage(n){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.page')[n-1].classList.add('active');
+function go(id){
+  document.querySelectorAll('.page')
+    .forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 </script>
 
