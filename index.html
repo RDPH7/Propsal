@@ -2,207 +2,119 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You 🤍</title>
+<title>For You 🌹</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family:'Playfair Display',serif;
-  background:#fdfdfd;
-  color:#000;
-  overflow:hidden;
-}
-
-/* pages */
-.page{
-  position:absolute;
-  inset:0;
+  background:#ffffff;
   display:flex;
-  flex-direction:column;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:'Dancing Script',cursive;
+}
+
+/* Instagram Story Frame */
+.story{
+  width:360px;
+  height:640px; /* 9:16 ratio */
+  background:#fff;
   text-align:center;
-  opacity:0;
-  pointer-events:none;
-  transition:1s;
-  padding:20px;
-}
-
-.page.active{
-  opacity:1;
-  pointer-events:auto;
-}
-
-h1,h2,p{color:#000}
-h1,h2{font-family:'Dancing Script',cursive}
-
-/* button */
-button{
-  margin-top:25px;
-  padding:12px 28px;
-  border:none;
-  border-radius:30px;
-  background:#e6005c;
-  color:#fff;
-  font-size:16px;
-  cursor:pointer;
-  animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-  50%{transform:scale(1.1)}
-}
-
-/* notes */
-.note{
-  background:rgba(255,255,255,0.97);
-  padding:25px;
-  border-radius:20px;
-  max-width:650px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.15);
-  animation:fadeUp 1s;
-}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* 🌹 BIG ROSE WITH GLOW + ROTATION */
-.big-rose{
   position:relative;
-  width:230px;
-  height:230px;
-  margin:40px auto;
-  animation:rotateRose 18s linear infinite;
 }
 
-@keyframes rotateRose{
-  from{transform:rotate(0deg)}
-  to{transform:rotate(360deg)}
+/* Text */
+h2{
+  margin-top:40px;
+  font-size:26px;
+  color:#000;
 }
 
-.big-rose span{
+h1{
+  font-size:30px;
+  color:#000;
+  margin-top:30px;
+}
+
+/* 🌹 ROSE CONTAINER */
+.rose{
+  position:relative;
+  width:200px;
+  height:200px;
+  margin:50px auto;
+}
+
+/* petals */
+.petal{
   position:absolute;
-  inset:0;
-  border-radius:50%;
-  transform:scale(0);
-  opacity:0;
-  animation:bloom 1.2s forwards ease-out;
+  width:120px;
+  height:160px;
+  background:radial-gradient(circle at top, #ff5c8a, #c4003a);
+  border-radius:50% 50% 50% 50%;
+  top:20px;
+  left:40px;
+  transform-origin:bottom center;
+  transform:scale(0) rotate(0deg);
+  animation:bloom 1.2s forwards;
 }
 
-.big-rose span:nth-child(1){
-  background:#7a001f;
-  animation-delay:0.2s;
-}
-.big-rose span:nth-child(2){
-  background:#b3003b;
-  animation-delay:0.8s;
-}
-.big-rose span:nth-child(3){
-  background:#e6004c;
-  animation-delay:1.4s;
-}
-.big-rose span:nth-child(4){
-  background:#ff3366;
-  animation-delay:2s;
-}
-.big-rose span:nth-child(5){
-  background:#ff7aa8;
-  animation-delay:2.6s;
-  box-shadow:0 0 35px rgba(255,0,90,0.7);
-}
+.petal:nth-child(1){animation-delay:0.2s}
+.petal:nth-child(2){animation-delay:0.6s;transform:rotate(45deg) scale(0)}
+.petal:nth-child(3){animation-delay:1s;transform:rotate(-45deg) scale(0)}
+.petal:nth-child(4){animation-delay:1.4s;transform:rotate(90deg) scale(0)}
+.petal:nth-child(5){animation-delay:1.8s;transform:rotate(-90deg) scale(0)}
 
 @keyframes bloom{
-  from{transform:scale(0.2);opacity:0}
-  to{transform:scale(1);opacity:1}
+  to{
+    transform:scale(1) rotate(var(--r,0deg));
+  }
+}
+
+/* center bud */
+.bud{
+  position:absolute;
+  width:60px;
+  height:60px;
+  background:#b3003b;
+  border-radius:50%;
+  top:70px;
+  left:70px;
+  animation:pop 2.2s forwards;
+}
+
+@keyframes pop{
+  from{transform:scale(0)}
+  to{transform:scale(1)}
 }
 </style>
 </head>
 
 <body>
 
-<!-- AUDIO (AUTO PLAY ON FINAL PAGE) -->
-<audio id="loveSong" src="song.mp3" loop></audio>
+<div class="story">
 
-<!-- PAGE 1 -->
-<div class="page active" id="p1">
-  <h1>Hey Beautiful 🤍</h1>
-  <button onclick="go('p2')">
-    Click here to see what’s your Aditya thinks about you
-  </button>
-</div>
-
-<!-- PAGE 2 -->
-<div class="page" id="p2">
-  <h2>Choose one 💖</h2>
-  <button onclick="go('note1')">Option 1 🌹</button>
-  <button onclick="go('note2')">Option 2 🤍</button>
-</div>
-
-<!-- NOTE 1 -->
-<div class="page" id="note1">
-  <div class="note">
-    <p>
-Hey My girl 🤌🏻 tumhe saamne se rose toh nahi de skta parr<br><br>
-haan tumhare liye kuch likha hai mere dil ne ❤️<br><br>
-“Shalu sach batau toh mujhe Valentine ki aadat nahi,
-first time hai… aur mujhe nahi lagta Valentine sirf
-1–2 week ka hota hai 🌹<br><br>
-Tum mere liye special se bhi zyada ho.
-Tumhara mere life me hona har roz ek Valentine hai.
-I love you Shalu 🤍”
-    </p>
-    <button onclick="go('final')">Next 💕</button>
-  </div>
-</div>
-
-<!-- NOTE 2 -->
-<div class="page" id="note2">
-  <div class="note">
-    <p>
-Hey Shalu 🤍<br><br>
-Mujhe pata hai tumhe abhi kaafi pain ho raha hoga,
-aur main tumhe better feel kaise karwau
-yeh mujhe nahi maloom 😔<br><br>
-Par Shalu,
-tum meri sukoon ho,
-meri khushi ho 🌸<br><br>
-I love you Madam ji ❤️
-    </p>
-    <button onclick="go('final')">Next 💖</button>
-  </div>
-</div>
-
-<!-- FINAL PAGE -->
-<div class="page" id="final">
   <h2>Hey, this is for you 🌹</h2>
 
-  <div class="big-rose">
-    <span></span><span></span><span></span><span></span><span></span>
+  <div class="rose">
+    <div class="petal" style="--r:0deg"></div>
+    <div class="petal" style="--r:45deg"></div>
+    <div class="petal" style="--r:-45deg"></div>
+    <div class="petal" style="--r:90deg"></div>
+    <div class="petal" style="--r:-90deg"></div>
+    <div class="bud"></div>
   </div>
 
   <h1>
     I love you Sanjita Tripathy ❤️<br>
     Mrs Sinha
   </h1>
+
 </div>
-
-<script>
-function go(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-
-  // play music on final page
-  if(id === 'final'){
-    document.getElementById('loveSong').play();
-  }
-}
-</script>
 
 </body>
 </html>
