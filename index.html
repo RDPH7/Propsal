@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You ❤️</title>
+<title>For You 🤍</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display&display=swap" rel="stylesheet">
@@ -12,21 +12,23 @@
 
 body{
   font-family:'Playfair Display',serif;
+  background:#fdfdfd;
+  color:#000;
   overflow:hidden;
-  background:#000;
 }
 
+/* pages */
 .page{
   position:absolute;
   inset:0;
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  flex-direction:column;
+  text-align:center;
   opacity:0;
   pointer-events:none;
   transition:1s;
-  text-align:center;
   padding:20px;
 }
 
@@ -35,16 +37,13 @@ body{
   pointer-events:auto;
 }
 
-h1,h2{
-  font-family:'Dancing Script',cursive;
-  color:#fff;
-}
+h1,h2,p{color:#000}
+h1,h2{font-family:'Dancing Script',cursive}
 
-p{color:#fff;font-size:18px}
-
+/* button */
 button{
-  margin-top:20px;
-  padding:12px 26px;
+  margin-top:25px;
+  padding:12px 28px;
   border:none;
   border-radius:30px;
   background:#e6005c;
@@ -58,28 +57,13 @@ button{
   50%{transform:scale(1.1)}
 }
 
-/* 🌹 ROSES BACKGROUND */
-.roses{
-  position:absolute;
-  inset:0;
-  background:
-  radial-gradient(circle at 20% 30%,#ff0033 0 40px,transparent 41px),
-  radial-gradient(circle at 70% 40%,#cc0033 0 45px,transparent 46px),
-  radial-gradient(circle at 50% 70%,#ff3366 0 50px,transparent 51px);
-  animation:bloom 6s infinite alternate;
-}
-
-@keyframes bloom{
-  from{filter:blur(4px)}
-  to{filter:blur(0)}
-}
-
-/* NOTES */
+/* notes */
 .note{
-  background:rgba(0,0,0,0.6);
+  background:rgba(255,255,255,0.95);
   padding:25px;
   border-radius:20px;
-  max-width:600px;
+  max-width:650px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
   animation:fadeUp 1s;
 }
 
@@ -88,34 +72,41 @@ button{
   to{opacity:1;transform:translateY(0)}
 }
 
-/* 🌹 ROSE ANIMATION */
-.rose{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:#b3003b;
+/* 🌹 BLOOMING ROSE */
+.rose-bloom{
   position:relative;
-  animation:openRose 3s forwards;
+  width:150px;
+  height:150px;
+  margin:30px auto;
+  filter:drop-shadow(0 0 20px rgba(255,0,80,0.35));
 }
 
-.rose::before,
-.rose::after{
-  content:'';
+.rose-bloom span{
   position:absolute;
-  inset:15px;
+  inset:0;
   border-radius:50%;
-  background:#ff3366;
+  background:#e6004c;
+  transform:scale(0);
+  opacity:0;
+  animation:bloom 1s forwards;
 }
 
-@keyframes openRose{
-  from{transform:scale(0.3)}
-  to{transform:scale(1)}
+.rose-bloom span:nth-child(1){animation-delay:0.2s}
+.rose-bloom span:nth-child(2){animation-delay:0.7s;background:#ff3366}
+.rose-bloom span:nth-child(3){animation-delay:1.2s;background:#ff6699}
+.rose-bloom span:nth-child(4){animation-delay:1.7s;background:#ff99bb}
+.rose-bloom span:nth-child(5){animation-delay:2.2s;background:#ffd6e6}
+
+@keyframes bloom{
+  from{transform:scale(0);opacity:0}
+  to{transform:scale(1);opacity:1}
 }
 
-.falling-rose{
+/* falling roses */
+.fall{
   position:absolute;
-  top:-50px;
-  font-size:30px;
+  top:-40px;
+  font-size:28px;
   animation:fall linear forwards;
 }
 
@@ -129,8 +120,7 @@ button{
 
 <!-- PAGE 1 -->
 <div class="page active" id="p1">
-  <div class="roses"></div>
-  <h1>Hey Beautiful 🌹</h1>
+  <h1>Hey Beautiful 🤍</h1>
   <button onclick="go('p2')">
     Click here to see what’s your Aditya thinks about you
   </button>
@@ -140,7 +130,7 @@ button{
 <div class="page" id="p2">
   <h2>Choose one 💖</h2>
   <button onclick="go('note1')">Option 1 🌹</button>
-  <button onclick="go('note2')">Option 2 💕</button>
+  <button onclick="go('note2')">Option 2 🤍</button>
 </div>
 
 <!-- NOTE 1 -->
@@ -148,13 +138,13 @@ button{
   <div class="note">
     <p>
 Hey My girl 🤌🏻 tumhe saamne se rose toh nahi de skta parr<br><br>
-Haan tumhare liye kch likha hai mere dil ne ❤️<br><br>
-“Shalu sach batau toh mujhe yeh Valentine ki adat nahi,
-first time hai aur waise bhi mujhe nahi lagta ki Valentine
-sirf 1–2 week ka ho 🌹<br><br>
+haan tumhare liye kuch likha hai mere dil ne ❤️<br><br>
+“Shalu sach batau toh mujhe Valentine ki aadat nahi,
+first time hai… aur mujhe nahi lagta Valentine sirf
+1–2 week ka hota hai 🌹<br><br>
 Tum mere liye special se bhi zyada ho.
-Tumhara mere life me hona har roz ek Valentine hai mere liye.
-I love you Shalu 💖”
+Tumhara mere life me hona har roz ek Valentine hai.
+I love you Shalu 🤍”
     </p>
     <button onclick="go('final')">Next 💕</button>
   </div>
@@ -164,14 +154,14 @@ I love you Shalu 💖”
 <div class="page" id="note2">
   <div class="note">
     <p>
-Hey Shalu 💔<br><br>
+Hey Shalu 🤍<br><br>
 Mujhe pata hai tumhe abhi kaafi pain ho raha hoga,
-aur main tumhe better kaise feel karwau
-yeh mujhe nahi malum 😔<br><br>
-Par yaar Shalu,
+aur main tumhe better feel kaise karwau
+yeh mujhe nahi maloom 😔<br><br>
+Par Shalu,
 tum meri sukoon ho,
-meri khushi ho ❤️<br><br>
-I love you Madam ji 🌹
+meri khushi ho 🌸<br><br>
+I love you Madam ji ❤️
     </p>
     <button onclick="go('final')">Next 💖</button>
   </div>
@@ -180,8 +170,12 @@ I love you Madam ji 🌹
 <!-- FINAL PAGE -->
 <div class="page" id="final">
   <h2>Hey, this is for you 🌹</h2>
-  <div class="rose"></div>
-  <h1 style="margin-top:30px">
+
+  <div class="rose-bloom">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <h1>
     I love you Sanjita Tripathy ❤️<br>
     Mrs Sinha
   </h1>
@@ -193,10 +187,11 @@ function go(id){
   document.getElementById(id).classList.add('active');
 }
 
-// Falling roses on final page
+// falling roses only on final page
 setInterval(()=>{
+  if(!document.getElementById('final').classList.contains('active')) return;
   const r=document.createElement('div');
-  r.className='falling-rose';
+  r.className='fall';
   r.innerHTML='🌹';
   r.style.left=Math.random()*100+'vw';
   r.style.animationDuration=(4+Math.random()*3)+'s';
