@@ -16,7 +16,7 @@ body{
   overflow:hidden;
 }
 
-/* Shared full screens */
+/* Full screens */
 .entry,.last{
   position:absolute;
   inset:0;
@@ -110,7 +110,7 @@ footer{margin-top:15px;font-size:12px;color:#777;}
 .last p{
   font-size:17px;
   line-height:1.6;
-  max-width:320px;
+  max-width:330px;
 }
 
 /* Floating hearts */
@@ -146,7 +146,7 @@ footer{margin-top:15px;font-size:12px;color:#777;}
 
     <div class="promise-text" id="promise"></div>
 
-    <button class="yes" onclick="showLast()">Main wada accept karti hoon ❤️</button>
+    <button class="yes" onclick="showLast()">Main waada accept krti hu ❤️</button>
     <button class="no" id="noBtn">Nahi 🙃</button>
 
     <footer>— Aditya Sinha</footer>
@@ -164,7 +164,7 @@ footer{margin-top:15px;font-size:12px;color:#777;}
 </div>
 
 <script>
-/* Entry to promise */
+/* Entry → Promise */
 function openPromise(){
   document.getElementById("entry").style.display="none";
   document.getElementById("card").style.display="block";
@@ -201,7 +201,7 @@ function startTyping(){
   },35);
 }
 
-/* Accept -> last page */
+/* Accept → Last Page */
 function showLast(){
   document.getElementById("card").style.display="none";
   document.getElementById("last").style.display="flex";
@@ -214,7 +214,7 @@ noBtn.onmouseover=()=>{
   noBtn.style.top=Math.random()*80-40+"px";
 };
 
-/* Hearts animation (all pages) */
+/* Hearts animation */
 setInterval(()=>{
   const heart=document.createElement("div");
   heart.className="heart";
