@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promises for You 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+  font-family:'Montserrat','Poppins',sans-serif;
+  overflow:hidden;
+}
+
+/* Entry Screen */
+.entry{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  z-index:5;
+}
+
+.entry h1{
+  font-size:28px;
+  margin:5px 0;
+}
+
+.entry p{
+  font-size:18px;
+  margin-bottom:20px;
+}
+
+.entry button{
+  padding:12px 32px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  background:white;
+  color:#e63946;
+  font-weight:600;
+}
+
+/* Story Frame */
+.story{
+  width:100%;
+  max-width:420px;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* Card */
+.card{
+  background:#fff;
+  width:90%;
+  padding:25px;
+  border-radius:24px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+  animation:heartbeat 2s infinite;
+  position:relative;
+  z-index:2;
+  display:none;
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.04);}
+}
+
+h2{
+  color:#e63946;
+  margin-bottom:15px;
+}
+
+.promise-text{
+  font-size:16px;
+  line-height:1.6;
+  min-height:180px;
+  margin-bottom:20px;
+  white-space:pre-line;
+}
+
+button{
+  padding:12px 26px;
+  border:none;
+  border-radius:30px;
+  font-size:15px;
+  cursor:pointer;
+  margin:5px;
+}
+
+.yes{
+  background:#38b000;
+  color:#fff;
+}
+
+.no{
+  background:#adb5bd;
+  position:relative;
+}
+
+footer{
+  margin-top:15px;
+  font-size:12px;
+  color:#777;
+}
+
+/* Floating Hearts */
+.heart{
+  position:absolute;
+  color:#ff4d6d;
+  font-size:18px;
+  animation:float 6s linear infinite;
+  opacity:0.7;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);opacity:0;}
+  10%{opacity:0.8;}
+  100%{transform:translateY(-100vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ENTRY LAYOUT -->
+<div class="entry" id="entry">
+  <h1>Hey Madam ji 💖</h1>
+  <p>Promises for you</p>
+  <button onclick="openPromise()">Open 💌</button>
+</div>
+
+<!-- MAIN STORY -->
+<div class="story">
+  <div class="card" id="card">
+    <h2>💌 Hoii Mrs Aadu Tripathy</h2>
+
+    <div class="promise-text" id="promise"></div>
+
+    <button class="yes">Main wada accept karti hoon ❤️</button>
+    <button class="no" id="noBtn">Nahi 🙃</button>
+
+    <footer>— Aditya Sinha</footer>
+  </div>
+</div>
+
+<script>
+/* Open Animation */
+function openPromise(){
+  document.getElementById("entry").style.display="none";
+  document.getElementById("card").style.display="block";
+  startTyping();
+}
+
+/* Promise Text */
+const text = `Hoii Mrs Aadu Tripathy 💖,
+
+Main, Aditya Sinha, yeh wada karta hoon ki—
+
+1. Main tumhari soch, tumhari feelings aur tumhari boundaries ka
+   hamesha samman karunga, chahe hum kisi baat par disagree hi kyun na karein.
+
+2. Main wada karta hoon ki main baaton ko chupane ke bajay,
+   imaandari se aur khulkar baat karunga.
+
+3. Main wada karta hoon ki tumhare sapno aur tumhari growth ko
+   hamesha support karunga, chahe woh mujhse directly jude ho ya nahi.
+
+4. Main wada karta hoon ki main patience rakhunga,
+   kyunki main jaanta hoon ki ek relationship waqt aur samajh se hi strong hota hai.
+
+Yeh wada dil se hai —
+sirf tumhare liye. 💖`;
+
+let i=0;
+function startTyping(){
+  const p=document.getElementById("promise");
+  const typing=setInterval(()=>{
+    p.innerHTML+=text.charAt(i);
+    i++;
+    if(i>=text.length) clearInterval(typing);
+  },35);
+}
+
+/* No Button Move */
+const noBtn=document.getElementById("noBtn");
+noBtn.onmouseover=()=>{
+  noBtn.style.left=Math.random()*120-60+"px";
+  noBtn.style.top=Math.random()*80-40+"px";
+};
+
+/* Floating Hearts */
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=Math.random()*20+10+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+},500);
+</script>
+
+</body>
+</html>
