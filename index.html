@@ -16,7 +16,7 @@ body{
   overflow:hidden;
 }
 
-/* Full screens */
+/* Entry & Last */
 .entry,.last{
   position:absolute;
   inset:0;
@@ -44,7 +44,7 @@ body{
   font-weight:600;
 }
 
-/* Story frame */
+/* Card */
 .story{
   width:100%;
   max-width:420px;
@@ -55,7 +55,6 @@ body{
   align-items:center;
 }
 
-/* Card */
 .card{
   background:#fff;
   width:90%;
@@ -65,7 +64,6 @@ body{
   box-shadow:0 20px 40px rgba(0,0,0,0.25);
   animation:heartbeat 2s infinite;
   display:none;
-  z-index:3;
 }
 
 @keyframes heartbeat{
@@ -89,31 +87,26 @@ button{
   border-radius:30px;
   font-size:15px;
   cursor:pointer;
-  margin:5px;
+  margin:6px;
 }
 
 .yes{background:#38b000;color:#fff;}
 .no{background:#adb5bd;position:relative;}
 
+.music-btn{
+  background:#ff4d6d;
+  color:white;
+  font-weight:600;
+}
+
 footer{margin-top:15px;font-size:12px;color:#777;}
 
 /* Last Page */
-.last{
-  display:none;
-}
+.last{display:none;}
+.last h1{font-size:26px;margin-bottom:15px;}
+.last p{font-size:17px;line-height:1.6;max-width:330px;}
 
-.last h1{
-  font-size:26px;
-  margin-bottom:15px;
-}
-
-.last p{
-  font-size:17px;
-  line-height:1.6;
-  max-width:330px;
-}
-
-/* Floating hearts */
+/* Hearts */
 .heart{
   position:absolute;
   color:#ff4d6d;
@@ -132,7 +125,7 @@ footer{margin-top:15px;font-size:12px;color:#777;}
 
 <body>
 
-<!-- ENTRY PAGE -->
+<!-- ENTRY -->
 <div class="entry" id="entry">
   <h1>Hey Madam ji 💖</h1>
   <p>Promises for you</p>
@@ -146,6 +139,8 @@ footer{margin-top:15px;font-size:12px;color:#777;}
 
     <div class="promise-text" id="promise"></div>
 
+    <button class="music-btn" onclick="playMusic()">🎵 Play Music</button><br>
+
     <button class="yes" onclick="showLast()">Main waada accept krti hu ❤️</button>
     <button class="no" id="noBtn">Nahi 🙃</button>
 
@@ -153,7 +148,7 @@ footer{margin-top:15px;font-size:12px;color:#777;}
   </div>
 </div>
 
-<!-- LAST LOVE PAGE -->
+<!-- LAST PAGE -->
 <div class="last" id="last">
   <h1>❤️ I love you Mrs Aditya Sinha</h1>
   <p>
@@ -163,30 +158,33 @@ footer{margin-top:15px;font-size:12px;color:#777;}
   </p>
 </div>
 
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-/* Entry → Promise */
+/* Entry */
 function openPromise(){
   document.getElementById("entry").style.display="none";
   document.getElementById("card").style.display="block";
   startTyping();
 }
 
-/* Promise typing */
+/* Typing */
 const text = `Hoii Mrs Aadu Tripathy 💖,
 
 Main, Aditya Sinha, yeh wada karta hoon ki—
 
 1. Main tumhari soch, tumhari feelings aur tumhari boundaries ka
-   hamesha samman karunga, chahe hum kisi baat par disagree hi kyun na karein.
+   hamesha samman karunga, chahe hum disagree hi kyun na karein.
 
-2. Main wada karta hoon ki main baaton ko chupane ke bajay,
-   imaandari se aur khulkar baat karunga.
+2. Main wada karta hoon ki imaandari se baat karunga.
 
-3. Main wada karta hoon ki tumhare sapno aur tumhari growth ko
-   hamesha support karunga, chahe woh mujhse directly jude ho ya nahi.
+3. Main tumhare sapno aur growth ko support karunga.
 
-4. Main wada karta hoon ki main patience rakhunga,
-   kyunki main jaanta hoon ki ek relationship waqt aur samajh se hi strong hota hai.
+4. Main patience rakhunga,
+   kyunki relationship waqt ke saath strong hota hai.
 
 Yeh wada dil se hai —
 sirf tumhare liye. 💖`;
@@ -201,20 +199,27 @@ function startTyping(){
   },35);
 }
 
-/* Accept → Last Page */
+/* Music */
+function playMusic(){
+  const m=document.getElementById("bgMusic");
+  m.volume=0.75;   // medium–high
+  m.play();
+}
+
+/* Accept */
 function showLast(){
   document.getElementById("card").style.display="none";
   document.getElementById("last").style.display="flex";
 }
 
-/* No button move */
+/* No button */
 const noBtn=document.getElementById("noBtn");
 noBtn.onmouseover=()=>{
   noBtn.style.left=Math.random()*120-60+"px";
   noBtn.style.top=Math.random()*80-40+"px";
 };
 
-/* Hearts animation */
+/* Hearts */
 setInterval(()=>{
   const heart=document.createElement("div");
   heart.className="heart";
